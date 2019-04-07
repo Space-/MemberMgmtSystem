@@ -72,6 +72,14 @@ namespace MemberMgmtSystemTest
             ValidatePropertyResultShouldBe(false, customerModel);
         }
 
+        [Test]
+        public void Phone_format_is_Valid()
+        {
+            // Arrange
+            var customerModel = new Customers() { Phone = "0928-123456" };
+            ValidatePropertyResultShouldBe(true, customerModel);
+        }
+
         private static void ValidatePropertyResultShouldBe(bool expected, Customers customerModel)
         {
             // Act
