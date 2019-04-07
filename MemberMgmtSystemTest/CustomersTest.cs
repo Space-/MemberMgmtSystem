@@ -15,11 +15,19 @@ namespace MemberMgmtSystemTest
         }
 
         [Test]
+        public void ContactName_length_zero_Invalid()
+        {
+            // Arrange
+            var customerModel = new Customers() { ContactName = "" };
+            ValidatePropertyResultShouldBe(false, customerModel);
+        }
+
+        [Test]
         public void ContactName_length_three_Valid()
         {
             // Arrange
             var customerModel = new Customers() { ContactName = "abc" };
-            ValidatePropertyResultShouldBeTrue(customerModel);
+            ValidatePropertyResultShouldBe(true, customerModel);
         }
 
         [Test]
@@ -27,10 +35,10 @@ namespace MemberMgmtSystemTest
         {
             // Arrange
             var customerModel = new Customers() { ContactName = new string('a', 15) };
-            ValidatePropertyResultShouldBeTrue(customerModel);
+            ValidatePropertyResultShouldBe(true, customerModel);
         }
 
-        private static void ValidatePropertyResultShouldBeTrue(Customers customerModel)
+        private static void ValidatePropertyResultShouldBe(bool expected, Customers customerModel)
         {
             // Act
             var validationResults = new List<ValidationResult>();
@@ -38,7 +46,7 @@ namespace MemberMgmtSystemTest
                 validationResults, validateAllProperties: true);
 
             // Assert
-            Assert.True(actual);
+            Assert.AreEqual(expected, actual);
         }
     }
 }
