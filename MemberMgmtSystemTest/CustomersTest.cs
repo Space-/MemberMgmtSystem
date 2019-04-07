@@ -74,6 +74,7 @@ namespace MemberMgmtSystemTest
 
         [TestCase(true, "0928-123456")]
         [TestCase(false, "0928-123456789123456")]
+        [TestCase(false, "0928123-456")]
         public void Phone_format_validate(bool expected, string phone)
         {
             // Arrange
