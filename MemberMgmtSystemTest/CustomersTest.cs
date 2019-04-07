@@ -49,6 +49,14 @@ namespace MemberMgmtSystemTest
             ValidatePropertyResultShouldBe(false, customerModel);
         }
 
+        [Test]
+        public void Age_is_integer_and_greater_than_zero_Valid()
+        {
+            // Arrange
+            var customerModel = new Customers() { Age = 16 };
+            ValidatePropertyResultShouldBe(true, customerModel);
+        }
+
         private static void ValidatePropertyResultShouldBe(bool expected, Customers customerModel)
         {
             // Act
