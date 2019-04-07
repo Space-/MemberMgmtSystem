@@ -72,20 +72,13 @@ namespace MemberMgmtSystemTest
             ValidatePropertyResultShouldBe(false, customerModel);
         }
 
-        [Test]
-        public void Phone_format_is_Valid()
+        [TestCase(true, "0928-123456")]
+        [TestCase(false, "0928-123456789123456")]
+        public void Phone_format_validate(bool expected, string phone)
         {
             // Arrange
-            var customerModel = new Customers() { Phone = "0928-123456" };
-            ValidatePropertyResultShouldBe(true, customerModel);
-        }
-
-        [Test]
-        public void Phone_number_total_length_too_long_Invalid()
-        {
-            // Arrange
-            var customerModel = new Customers() { Phone = "0928-123456789123456" };
-            ValidatePropertyResultShouldBe(false, customerModel);
+            var customerModel = new Customers() { Phone = phone };
+            ValidatePropertyResultShouldBe(expected, customerModel);
         }
 
         private static void ValidatePropertyResultShouldBe(bool expected, Customers customerModel)
