@@ -28,5 +28,20 @@ namespace MemberMgmtSystemTest
             // Assert
             Assert.True(actual);
         }
+
+        [Test]
+        public void ContactName_length_fifteen_Valid()
+        {
+            // Arrange
+            var customerModel = new Customers() { ContactName = new string('a', 15) };
+
+            // Act
+            var validationResults = new List<ValidationResult>();
+            var actual = Validator.TryValidateObject(customerModel, new ValidationContext(customerModel),
+                validationResults, validateAllProperties: true);
+
+            // Assert
+            Assert.True(actual);
+        }
     }
 }
