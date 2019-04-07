@@ -64,6 +64,14 @@ namespace MemberMgmtSystemTest
             ValidatePropertyResultShouldBe(true, customerModel);
         }
 
+        [Test]
+        public void Age_is_not_integer_Invalid()
+        {
+            // Arrange
+            var customerModel = new Customers() { Age = (int?)0.5 };
+            ValidatePropertyResultShouldBe(false, customerModel);
+        }
+
         private static void ValidatePropertyResultShouldBe(bool expected, Customers customerModel)
         {
             // Act
