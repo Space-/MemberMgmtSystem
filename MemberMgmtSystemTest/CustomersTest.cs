@@ -14,20 +14,13 @@ namespace MemberMgmtSystemTest
         {
         }
 
-        [Test]
-        public void ContactName_length_zero_Invalid()
+        [TestCase(false, "")]
+        [TestCase(true, "abc")]
+        public void ContactName_length_validate(bool expected, string contactName)
         {
             // Arrange
-            var customerModel = new Customers() { ContactName = "" };
-            ValidatePropertyResultShouldBe(false, customerModel);
-        }
-
-        [Test]
-        public void ContactName_length_three_Valid()
-        {
-            // Arrange
-            var customerModel = new Customers() { ContactName = "abc" };
-            ValidatePropertyResultShouldBe(true, customerModel);
+            var customerModel = new Customers() { ContactName = contactName };
+            ValidatePropertyResultShouldBe(expected, customerModel);
         }
 
         [Test]
