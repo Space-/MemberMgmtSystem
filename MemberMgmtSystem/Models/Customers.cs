@@ -24,7 +24,6 @@ namespace MemberMgmtSystem.Models
         //        public string CompanyName { get; set; }
 
         //        [Required]
-        //        [Range(3, 15)]
         [MinLength(3)]
         [MaxLength(15)]
         public string ContactName { get; set; }
@@ -53,7 +52,8 @@ namespace MemberMgmtSystem.Models
         //        [StringLength(24)]
         //        public string Fax { get; set; }
 
-        public int Age { get; set; }
+        [Range(1, 300)]
+        public int? Age { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Orders> Orders { get; set; }

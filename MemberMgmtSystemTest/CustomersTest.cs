@@ -50,6 +50,13 @@ namespace MemberMgmtSystemTest
         }
 
         [Test]
+        public void Age_is_integer_and_equal_to_zero_Invalid()
+        {
+            var customerModel = new Customers() { Age = 0 };
+            ValidatePropertyResultShouldBe(false, customerModel);
+        }
+
+        [Test]
         public void Age_is_integer_and_greater_than_zero_Valid()
         {
             // Arrange
