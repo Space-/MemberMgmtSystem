@@ -19,14 +19,7 @@ namespace MemberMgmtSystemTest
         {
             // Arrange
             var customerModel = new Customers() { ContactName = "abc" };
-
-            // Act
-            var validationResults = new List<ValidationResult>();
-            var actual = Validator.TryValidateObject(customerModel, new ValidationContext(customerModel),
-                validationResults, validateAllProperties: true);
-
-            // Assert
-            Assert.True(actual);
+            ValidatePropertyResultShouldBeTrue(customerModel);
         }
 
         [Test]
@@ -34,7 +27,11 @@ namespace MemberMgmtSystemTest
         {
             // Arrange
             var customerModel = new Customers() { ContactName = new string('a', 15) };
+            ValidatePropertyResultShouldBeTrue(customerModel);
+        }
 
+        private static void ValidatePropertyResultShouldBeTrue(Customers customerModel)
+        {
             // Act
             var validationResults = new List<ValidationResult>();
             var actual = Validator.TryValidateObject(customerModel, new ValidationContext(customerModel),
