@@ -36,9 +36,9 @@ namespace MemberMgmtSystem.Models
                 .WithMany(e => e.CustomerDemographics)
                 .Map(m => m.ToTable("CustomerCustomerDemo").MapLeftKey("CustomerTypeID").MapRightKey("CustomerID"));
 
-            modelBuilder.Entity<Customers>()
-                .Property(e => e.CustomerID)
-                .IsFixedLength();
+            //            modelBuilder.Entity<Customers>()
+            //                .Property(e => e.CustomerID)
+            //                .IsFixedLength();
 
             modelBuilder.Entity<Employees>()
                 .HasMany(e => e.Employees1)
