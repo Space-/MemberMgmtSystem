@@ -15,6 +15,7 @@ namespace MemberMgmtSystemTest
         }
 
         [TestCase(false, "")]
+        [TestCase(false, "ab")]
         [TestCase(true, "abc")]
         public void ContactName_length_validate(bool expected, string contactName)
         {
