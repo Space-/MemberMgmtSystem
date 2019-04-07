@@ -41,6 +41,14 @@ namespace MemberMgmtSystemTest
             ValidatePropertyResultShouldBe(true, customerModel);
         }
 
+        [Test]
+        public void ContactName_length_sixteen_Valid()
+        {
+            // Arrange
+            var customerModel = new Customers() { ContactName = new string('a', 16) };
+            ValidatePropertyResultShouldBe(false, customerModel);
+        }
+
         private static void ValidatePropertyResultShouldBe(bool expected, Customers customerModel)
         {
             // Act

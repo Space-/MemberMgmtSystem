@@ -24,7 +24,9 @@ namespace MemberMgmtSystem.Models
         //        public string CompanyName { get; set; }
 
         //        [Required]
+        //        [Range(3, 15)]
         [MinLength(3)]
+        [MaxLength(15)]
         public string ContactName { get; set; }
 
         //        [StringLength(30)]
