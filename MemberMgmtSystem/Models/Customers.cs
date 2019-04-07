@@ -46,7 +46,8 @@ namespace MemberMgmtSystem.Models
         //        [StringLength(15)]
         //        public string Country { get; set; }
         //
-        [StringLength(24)]
+
+        [RegularExpression(@"^\d{4}-\d{6}")]
         public string Phone { get; set; }
 
         //

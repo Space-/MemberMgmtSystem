@@ -80,6 +80,14 @@ namespace MemberMgmtSystemTest
             ValidatePropertyResultShouldBe(true, customerModel);
         }
 
+        [Test]
+        public void Phone_number_total_length_too_long_Invalid()
+        {
+            // Arrange
+            var customerModel = new Customers() { Phone = "0928-123456789123456" };
+            ValidatePropertyResultShouldBe(false, customerModel);
+        }
+
         private static void ValidatePropertyResultShouldBe(bool expected, Customers customerModel)
         {
             // Act
