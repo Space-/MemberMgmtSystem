@@ -15,24 +15,25 @@ namespace MemberMgmtSystem.Models
             CustomerDemographics = new HashSet<CustomerDemographics>();
         }
 
-        //        [Key]
-        //        [StringLength(5)]
-        //        public string CustomerID { get; set; }
-        //
+        [Key]
+        [StringLength(5)]
+        public string CustomerID { get; set; }
+
         //        [Required]
         //        [StringLength(40)]
         //        public string CompanyName { get; set; }
 
-        //        [Required]
+        [Required]
         [MinLength(3)]
         [MaxLength(15)]
         public string ContactName { get; set; }
 
         //        [StringLength(30)]
         //        public string ContactTitle { get; set; }
-        //
-        //        [StringLength(60)]
-        //        public string Address { get; set; }
+
+        [StringLength(60)]
+        public string Address { get; set; }
+
         //
         //        [StringLength(15)]
         //        public string City { get; set; }
