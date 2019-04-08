@@ -64,13 +64,13 @@ namespace MemberMgmtSystemTest
             ValidatePropertyResultShouldBe(true, customerModel, "Age", customerModel.Age);
         }
 
-        [Test]
-        public void Age_is_not_integer_Invalid()
-        {
-            // Arrange
-            var customerModel = new Customers() { Age = (int?)0.5 };
-            ValidatePropertyResultShouldBe(false, customerModel, "Age", customerModel.Age);
-        }
+        //        [Test]
+        //        public void Age_is_not_integer_Invalid()
+        //        {
+        //            // Arrange
+        //            var customerModel = new Customers() { Age = (int?)0.5 };
+        //            ValidatePropertyResultShouldBe(false, customerModel, "Age", customerModel.Age);
+        //        }
 
         [TestCase(true, "0928-123456")]
         [TestCase(false, "0928-123456789123456")]
