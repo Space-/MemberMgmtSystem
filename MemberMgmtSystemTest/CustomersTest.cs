@@ -22,7 +22,7 @@ namespace MemberMgmtSystemTest
         {
             // Arrange
             var customerModel = new Customers() { ContactName = contactName };
-            ValidatePropertyResultShouldBe(expected, customerModel);
+            ValidatePropertyResultShouldBe(expected, customerModel, "ContactName", customerModel.ContactName);
         }
 
         [Test]
@@ -30,7 +30,7 @@ namespace MemberMgmtSystemTest
         {
             // Arrange
             var customerModel = new Customers() { ContactName = new string('a', 14) };
-            ValidatePropertyResultShouldBe(true, customerModel);
+            ValidatePropertyResultShouldBe(true, customerModel, "ContactName", customerModel.ContactName);
         }
 
         [Test]
@@ -38,7 +38,7 @@ namespace MemberMgmtSystemTest
         {
             // Arrange
             var customerModel = new Customers() { ContactName = new string('a', 15) };
-            ValidatePropertyResultShouldBe(true, customerModel);
+            ValidatePropertyResultShouldBe(true, customerModel, "ContactName", customerModel.ContactName);
         }
 
         [Test]
@@ -46,14 +46,14 @@ namespace MemberMgmtSystemTest
         {
             // Arrange
             var customerModel = new Customers() { ContactName = new string('a', 16) };
-            ValidatePropertyResultShouldBe(false, customerModel);
+            ValidatePropertyResultShouldBe(false, customerModel, "ContactName", customerModel.ContactName);
         }
 
         [Test]
         public void Age_is_integer_and_equal_to_zero_Invalid()
         {
             var customerModel = new Customers() { Age = 0 };
-            ValidatePropertyResultShouldBe(false, customerModel);
+            ValidatePropertyResultShouldBe(false, customerModel, "Age", customerModel.Age);
         }
 
         [Test]
@@ -61,7 +61,7 @@ namespace MemberMgmtSystemTest
         {
             // Arrange
             var customerModel = new Customers() { Age = 16 };
-            ValidatePropertyResultShouldBe(true, customerModel);
+            ValidatePropertyResultShouldBe(true, customerModel, "Age", customerModel.Age);
         }
 
         [Test]
@@ -69,7 +69,7 @@ namespace MemberMgmtSystemTest
         {
             // Arrange
             var customerModel = new Customers() { Age = (int?)0.5 };
-            ValidatePropertyResultShouldBe(false, customerModel);
+            ValidatePropertyResultShouldBe(false, customerModel, "Age", customerModel.Age);
         }
 
         [TestCase(true, "0928-123456")]
@@ -79,15 +79,23 @@ namespace MemberMgmtSystemTest
         {
             // Arrange
             var customerModel = new Customers() { Phone = phone };
-            ValidatePropertyResultShouldBe(expected, customerModel);
+            ValidatePropertyResultShouldBe(expected, customerModel, "Phone", customerModel.Phone);
         }
 
-        private static void ValidatePropertyResultShouldBe(bool expected, Customers customerModel)
+        private static void ValidatePropertyResultShouldBe(bool expected, Customers customerModel, string propertyName,
+            object toValidatedPropertyValue)
         {
-            // Act
             var validationResults = new List<ValidationResult>();
-            var actual = Validator.TryValidateObject(customerModel, new ValidationContext(customerModel),
-                validationResults, validateAllProperties: true);
+            var attributes = typeof(Customers)
+                .GetProperty(propertyName)
+                .GetCustomAttributes(false)
+                .OfType<ValidationAttribute>()
+                .ToArray();
+
+            var actual = Validator.TryValidateValue(toValidatedPropertyValue, new ValidationContext(customerModel), validationResults, attributes);
+            //            if (actual)
+            //                return string.Empty;
+            //            return validationResults.FirstOrDefault<ValidationResult>().ErrorMessage;
 
             // Assert
             Assert.AreEqual(expected, actual);
