@@ -55,7 +55,7 @@ namespace MemberMgmtSystem.Models
         //        public string Fax { get; set; }
 
         [Range(1, int.MaxValue)]
-        public int? Age { get; set; }
+        public int Age { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Orders> Orders { get; set; }
