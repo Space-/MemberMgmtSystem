@@ -93,12 +93,10 @@ namespace MemberMgmtSystemTest
                 .ToArray();
 
             var actual = Validator.TryValidateValue(toValidatedPropertyValue, new ValidationContext(customerModel), validationResults, attributes);
-            //            if (actual)
-            //                return string.Empty;
-            //            return validationResults.FirstOrDefault<ValidationResult>().ErrorMessage;
+            var errorMessage = actual ? string.Empty : validationResults.FirstOrDefault<ValidationResult>()?.ErrorMessage;
 
             // Assert
-            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, actual, errorMessage);
         }
     }
 }
