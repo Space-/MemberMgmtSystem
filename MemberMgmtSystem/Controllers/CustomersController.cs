@@ -21,7 +21,7 @@ namespace MemberMgmtSystem.Controllers
         }
 
         // GET: Customers/Details/5
-        public ActionResult Details(string id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
@@ -42,8 +42,8 @@ namespace MemberMgmtSystem.Controllers
         }
 
         // POST: Customers/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // 若要免於過量張貼攻擊，請啟用想要繫結的特定屬性，如需
+        // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "CustomerID,ContactName,Address,Phone,Age")] Customers customers)
@@ -59,7 +59,7 @@ namespace MemberMgmtSystem.Controllers
         }
 
         // GET: Customers/Edit/5
-        public ActionResult Edit(string id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
@@ -74,8 +74,8 @@ namespace MemberMgmtSystem.Controllers
         }
 
         // POST: Customers/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // 若要免於過量張貼攻擊，請啟用想要繫結的特定屬性，如需
+        // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "CustomerID,ContactName,Address,Phone,Age")] Customers customers)
@@ -90,7 +90,7 @@ namespace MemberMgmtSystem.Controllers
         }
 
         // GET: Customers/Delete/5
-        public ActionResult Delete(string id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
@@ -107,7 +107,7 @@ namespace MemberMgmtSystem.Controllers
         // POST: Customers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        public ActionResult DeleteConfirmed(int id)
         {
             Customers customers = db.Customers.Find(id);
             db.Customers.Remove(customers);
