@@ -19,9 +19,9 @@ namespace MemberMgmtSystem.Models
         [StringLength(5)]
         public string CustomerID { get; set; }
 
-        //        [Required]
-        //        [StringLength(40)]
-        //        public string CompanyName { get; set; }
+        [Required]
+        [StringLength(40)]
+        public string CompanyName { get; set; }
 
         [Required]
         [MinLength(3)]
