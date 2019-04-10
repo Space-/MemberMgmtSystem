@@ -1,3 +1,5 @@
+using System.ComponentModel;
+
 namespace MemberMgmtSystem.Models
 {
     using System.ComponentModel.DataAnnotations;
@@ -12,8 +14,8 @@ namespace MemberMgmtSystem.Models
         //        public string CompanyName { get; set; }
 
         [Required]
-        [MinLength(3)]
-        [MaxLength(15)]
+        [MinLength(3), MaxLength(15)]
+        [DisplayName("Name")]
         public string ContactName { get; set; }
 
         //        [StringLength(30)]
