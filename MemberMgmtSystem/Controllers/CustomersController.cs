@@ -27,12 +27,12 @@ namespace MemberMgmtSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Customers customers = db.Customers.Find(id);
-            if (customers == null)
+            Customers customer = db.Customers.Find(id);
+            if (customer == null)
             {
                 return HttpNotFound();
             }
-            return View(customers);
+            return View(customer);
         }
 
         // GET: Customers/Create
@@ -65,12 +65,12 @@ namespace MemberMgmtSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Customers customers = db.Customers.Find(id);
-            if (customers == null)
+            Customers customer = db.Customers.Find(id);
+            if (customer == null)
             {
                 return HttpNotFound();
             }
-            return View(customers);
+            return View(customer);
         }
 
         // POST: Customers/Edit/5
@@ -96,12 +96,15 @@ namespace MemberMgmtSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Customers customers = db.Customers.Find(id);
-            if (customers == null)
+            Customers customer = db.Customers.Find(id);
+            if (customer == null)
             {
                 return HttpNotFound();
             }
-            return View(customers);
+
+            //            return View(customer);
+            //            return PartialView("_DeleteCustomer", customer);
+            return PartialView("Delete", customer);
         }
 
         // POST: Customers/Delete/5
@@ -109,8 +112,8 @@ namespace MemberMgmtSystem.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Customers customers = db.Customers.Find(id);
-            db.Customers.Remove(customers);
+            Customers customer = db.Customers.Find(id);
+            db.Customers.Remove(customer);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
