@@ -59,34 +59,35 @@ namespace MemberMgmtSystem.Controllers
         }
 
         // GET: Customers/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Customers customer = db.Customers.Find(id);
-            if (customer == null)
-            {
-                return HttpNotFound();
-            }
-            return View(customer);
-        }
+        //        public ActionResult Edit(int? id)
+        //        {
+        //            if (id == null)
+        //            {
+        //                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //            }
+        //            Customers customer = db.Customers.Find(id);
+        //            if (customer == null)
+        //            {
+        //                return HttpNotFound();
+        //            }
+        //            return View(customer);
+        //        }
 
         // POST: Customers/Edit/5
         // 若要免於過量張貼攻擊，請啟用想要繫結的特定屬性，如需
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
-        [HttpPost]
+        //        [HttpPost]
+        [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CustomerID,ContactName,Address,Phone,Age")] Customers customers)
+        public PartialViewResult Edit([Bind(Include = "CustomerID,ContactName,Address,Phone,Age")] Customers customer)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(customers).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                //                db.Entry(customer).State = EntityState.Modified;
+                //                db.SaveChanges();
+                //                return RedirectToAction("Index");
             }
-            return View(customers);
+            return PartialView("_EditCustomer", customer);
         }
 
         // GET: Customers/Delete/5
@@ -132,6 +133,12 @@ namespace MemberMgmtSystem.Controllers
         {
             var customer = db.Customers.Find(id);
             return PartialView("_DeleteCustomer", customer);
+        }
+
+        public PartialViewResult PartialViewEditCustomer(int id)
+        {
+            var customer = db.Customers.Find(id);
+            return PartialView("_EditCustomer", customer);
         }
     }
 }
