@@ -52,8 +52,8 @@
                     @* @Html.ActionLink("Edit", "Edit", new { id = item.CustomerID }) | *@
                     @* @Html.ActionLink("Details", "Details", new { id = item.CustomerID }) | *@
                     @* @Html.ActionLink("Delete", "Delete", new { id = item.CustomerID }) *@
-                    <button onclick="showPartialView('Customers', 'PartialViewEditCustomer',@item.CustomerID)">Edit</button>
-                    <button onclick="showPartialView('Customers', 'PartialViewDelCustomer',@item.CustomerID)">Delete</button>
+                    <button class="btn btn-info" onclick="showPartialView('Customers', 'PartialViewEditCustomer',@item.CustomerID)">Edit</button>
+                    <button class="btn btn-danger" onclick="showPartialView('Customers', 'PartialViewDelCustomer',@item.CustomerID)">Delete</button>
                     @* <button id="delete" onclick="showPartialView()"></button> *@
                     @* @Html.Partial("_DeleteCustomer", item) *@
                 </td>
