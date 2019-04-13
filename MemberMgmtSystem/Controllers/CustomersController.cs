@@ -104,7 +104,7 @@ namespace MemberMgmtSystem.Controllers
 
             //            return View(customer);
             //            return PartialView("_DeleteCustomer", customer);
-            return PartialView("Delete", customer);
+            return View("Delete", customer);
         }
 
         // POST: Customers/Delete/5
@@ -125,6 +125,13 @@ namespace MemberMgmtSystem.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        //        [HttpPost]
+        public PartialViewResult PartialViewDelCustomer(int id)
+        {
+            var customer = db.Customers.Find(id);
+            return PartialView("_DeleteCustomer", customer);
         }
     }
 }

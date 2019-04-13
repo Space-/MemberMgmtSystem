@@ -7,14 +7,15 @@
     .view {
         float: left;
         display: inline-block;
+        margin-left: 100px;
     }
 </style>
-<h2>Index</h2>
+<div class="view">
+    <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New Data", "Create")
-</p>
-<div class="">
+    <p>
+        @Html.ActionLink("Create New Data", "Create")
+    </p>
     <table class="table">
         <tr>
             <th>
@@ -48,15 +49,33 @@
                     @Html.DisplayFor(modelItem => item.Age)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.CustomerID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.CustomerID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.CustomerID })
+                    @* @Html.ActionLink("Edit", "Edit", new { id = item.CustomerID }) | *@
+                    @* @Html.ActionLink("Details", "Details", new { id = item.CustomerID }) | *@
+                    @* @Html.ActionLink("Delete", "Delete", new { id = item.CustomerID }) *@
+                    <button onclick="showPartialView('Customers', 'PartialViewEditCustomer',@item.CustomerID)">Edit</button>
+                    <button onclick="showPartialView('Customers', 'PartialViewDelCustomer',@item.CustomerID)">Delete</button>
+                    @* <button id="delete" onclick="showPartialView()"></button> *@
+                    @* @Html.Partial("_DeleteCustomer", item) *@
                 </td>
             </tr>
         }
     </table>
 </div>
-<div class="view">
-    @Html.Partial("_DeleteCustomer", Model.First())
-    @* @Html.Partial("Delete", Model.First()) *@
+<div class="view" id="display">
+    @{
+        //        Html.RenderPartial("_DeleteCustomer", Model.First());
+        //        Html.Partial("_DeleteCustomer", Model.First());
+    }
 </div>
+
+<script>
+    function showPartialView(controller, action, customerId) {
+        console.log(action, controller, customerId);
+
+        var actionUrl = '/' + controller + '/' + action + '/' + customerId;
+        console.log('url = ' + actionUrl);
+        $.get(actionUrl, {}, function (response) {
+            $("#display").html(response);
+        });
+    }
+</script>
