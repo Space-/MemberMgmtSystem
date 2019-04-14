@@ -6,8 +6,12 @@
 
 <h2>Edit</h2>
 
-@{ var actionAndParameter = "Edit\\" + Model.CustomerID; }
-@using (Html.BeginForm(actionAndParameter, "Customers"))
+@{
+    const string action = "Edit";
+    var actionAndParameter = action + "\\" + Model.CustomerID;
+}
+@* @using (Html.BeginForm(actionAndParameter, "Customers", FormMethod.Post, new { id = "editForm" })) *@
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "editForm" }))
 {
     @Html.AntiForgeryToken()
 
@@ -51,7 +55,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="button" id="btnPostEditData" value="Save" class="btn btn-default" />
             </div>
         </div>
     </div>
@@ -64,3 +68,39 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+<script>
+    $('#btnPostEditData').click(function() {
+        postPartialView("Customers", '@action', '@Model.CustomerID');
+    });
+
+    $('#editForm').removeData("validator");
+    $("#editForm").removeData("unobtrusiveValidation");
+    $.validator.unobtrusive.parse("#editForm");
+
+    function postPartialView(controller, action, customerId) {
+        console.log(controller, action, customerId);
+
+        var actionUrl = '/' + controller + '/' + action;
+        console.log('url = ' + actionUrl);
+        $.get(actionUrl, {
+                /*           __RequestVerificationToken: $('__RequestVerificationToken').val(),
+                            customer: $('#editForm').serialize()*/
+
+                //            customer: $('#editForm').serializeArray(),
+                CustomerID: $('#CustomerID').val(),
+                ContactName: $('#ContactName').val(),
+                Address: $('#Address').val(),
+                Phone: $('#Phone').val(),
+                Age: $('#Age').val()
+            }).done(function(response) {
+//                console.log('response = ' + response);
+                if (response === "RefreshPage") {
+                    window.location.href = window.location.href;
+                } else {
+                    $('#display').html(response);
+                }
+            console.log('---done---');
+        });
+    }
+</script>

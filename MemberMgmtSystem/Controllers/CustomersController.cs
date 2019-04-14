@@ -77,17 +77,19 @@ namespace MemberMgmtSystem.Controllers
         // 若要免於過量張貼攻擊，請啟用想要繫結的特定屬性，如需
         // 詳細資訊，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         //        [HttpPost]
-        [HttpPost, ActionName("Edit")]
-        [ValidateAntiForgeryToken]
-        public PartialViewResult Edit([Bind(Include = "CustomerID,ContactName,Address,Phone,Age")] Customers customer)
+        [HttpGet, ActionName("Edit")]
+        //        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "CustomerID,ContactName,Address,Phone,Age")] Customers customer)
         {
             if (ModelState.IsValid)
             {
-                //                db.Entry(customer).State = EntityState.Modified;
-                //                db.SaveChanges();
-                //                return RedirectToAction("Index");
+                db.Entry(customer).State = EntityState.Modified;
+                db.SaveChanges();
+                return Content("RefreshPage");
+                //                return Json(new { _view = RedirectToAction("Index"), validateResult = "fieldCorrect" });
             }
             return PartialView("_EditCustomer", customer);
+            //            return Json(new { _view = PartialView("_EditCustomer", customer), validateResult = "someFieldIncorrect" });
         }
 
         // GET: Customers/Delete/5
