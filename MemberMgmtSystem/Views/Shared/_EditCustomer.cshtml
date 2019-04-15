@@ -71,14 +71,14 @@
 
 <script>
     $('#btnPostEditData').click(function() {
-        postPartialView("Customers", '@action', '@Model.CustomerID');
+        passPartialView("Customers", '@action', '@Model.CustomerID');
     });
 
     $('#editForm').removeData("validator");
     $("#editForm").removeData("unobtrusiveValidation");
     $.validator.unobtrusive.parse("#editForm");
 
-    function postPartialView(controller, action, customerId) {
+    function passPartialView(controller, action, customerId) {
         console.log(controller, action, customerId);
 
         var actionUrl = '/' + controller + '/' + action;
