@@ -74,8 +74,8 @@
         postPartialView("Customers", '@action', '@Model.CustomerID');
     });
 
-    $('#editForm').removeData("validator");
-    $("#editForm").removeData("unobtrusiveValidation");
+//    $('#editForm').removeData("validator");
+//    $("#editForm").removeData("unobtrusiveValidation");
     $.validator.unobtrusive.parse("#editForm");
 
     function postPartialView(controller, action, customerId) {
