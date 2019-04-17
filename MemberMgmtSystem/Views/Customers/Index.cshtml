@@ -9,6 +9,12 @@
         display: inline-block;
         margin-left: 100px;
     }
+
+    .table .thead-gray th {
+        color: white;
+        background-color: #9E9E9E;
+        border-color: #454d55
+    }
 </style>
 <div class="view">
     <h2>Index</h2>
@@ -16,23 +22,23 @@
     <p>
         @Html.ActionLink("Create New Data", "Create")
     </p>
-    <table class="table">
-        <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ContactName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Address)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Phone)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Age)
-            </th>
-            <th></th>
-        </tr>
+    <table class="table table-striped">
+        <thead class="thead-gray">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ContactName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Address)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Phone)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Age)
+                </th>
+                <th></th>
+            </tr>
         </thead>
         <tbody>
             @foreach (var item in Model)
@@ -72,10 +78,9 @@
 </div>
 
 <script>
-    $(document).ready( function () {
+    $(document).ready(function () {
         $('.table').DataTable();
-    } );
-
+    });
 
     function showPartialView(controller, action, customerId) {
         //        console.log(action, controller, customerId);
