@@ -17,6 +17,7 @@
         @Html.ActionLink("Create New Data", "Create")
     </p>
     <table class="table">
+        <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.ContactName)
@@ -32,33 +33,35 @@
             </th>
             <th></th>
         </tr>
-
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ContactName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Address)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Phone)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Age)
-                </td>
-                <td>
-                    @* @Html.ActionLink("Edit", "Edit", new { id = item.CustomerID }) | *@
-                    @* @Html.ActionLink("Details", "Details", new { id = item.CustomerID }) | *@
-                    @* @Html.ActionLink("Delete", "Delete", new { id = item.CustomerID }) *@
-                    <button class="btn btn-info" onclick="showPartialView('Customers', 'PartialViewEditCustomer',@item.CustomerID)">Edit</button>
-                    <button class="btn btn-danger" onclick="showPartialView('Customers', 'PartialViewDelCustomer',@item.CustomerID)">Delete</button>
-                    @* <button id="delete" onclick="showPartialView()"></button> *@
-                    @* @Html.Partial("_DeleteCustomer", item) *@
-                </td>
-            </tr>
-        }
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ContactName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Address)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Phone)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Age)
+                    </td>
+                    <td>
+                        @* @Html.ActionLink("Edit", "Edit", new { id = item.CustomerID }) | *@
+                        @* @Html.ActionLink("Details", "Details", new { id = item.CustomerID }) | *@
+                        @* @Html.ActionLink("Delete", "Delete", new { id = item.CustomerID }) *@
+                        <button class="btn btn-info" onclick="showPartialView('Customers', 'PartialViewEditCustomer', @item.CustomerID)">Edit</button>
+                        <button class="btn btn-danger" onclick="showPartialView('Customers', 'PartialViewDelCustomer', @item.CustomerID)">Delete</button>
+                        @* <button id="delete" onclick="showPartialView()"></button> *@
+                        @* @Html.Partial("_DeleteCustomer", item) *@
+                    </td>
+                </tr>
+            }
+        </tbody>
     </table>
 </div>
 <div class="view" id="display">
@@ -69,6 +72,11 @@
 </div>
 
 <script>
+    $(document).ready( function () {
+        $('.table').DataTable();
+    } );
+
+
     function showPartialView(controller, action, customerId) {
         //        console.log(action, controller, customerId);
 
