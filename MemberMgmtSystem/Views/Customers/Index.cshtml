@@ -96,7 +96,7 @@
         $(window).scrollTop($('#display').offset().top);
 
         var actionUrl = '/' + controller + '/' + action + '/' + customerId;
-        console.log('url = ' + actionUrl);
+//        console.log('url = ' + actionUrl);
         $.get(actionUrl, {}, function (response) {
             $("#display").html(response);
         });

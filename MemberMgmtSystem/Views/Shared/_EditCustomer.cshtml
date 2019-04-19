@@ -1,7 +1,9 @@
 ﻿@model MemberMgmtSystem.Models.Customers
 
 @{
-    ViewBag.Title = "Edit";
+                /**/
+
+                ViewBag.Title = "Edit";
 }
 
 <h2>Edit</h2>
@@ -77,10 +79,10 @@
     $.validator.unobtrusive.parse("#editForm");
 
     function passPartialView(controller, action, customerId) {
-        console.log(controller, action, customerId);
+//        console.log(controller, action, customerId);
 
         var actionUrl = '/' + controller + '/' + action;
-        console.log('url = ' + actionUrl);
+//        console.log('url = ' + actionUrl);
         $.get(actionUrl, {
                 /*           __RequestVerificationToken: $('__RequestVerificationToken').val(),
                             customer: $('#editForm').serialize()*/
@@ -98,7 +100,7 @@
                 } else {
                     $('#display').html(response);
                 }
-            console.log('---done---');
+//            console.log('---done---');
         });
     }
 </script>
