@@ -21,6 +21,7 @@ namespace MemberMgmtSystem.Models
         //        [StringLength(30)]
         //        public string ContactTitle { get; set; }
 
+        [Required]
         [StringLength(60)]
         public string Address { get; set; }
 
@@ -38,6 +39,7 @@ namespace MemberMgmtSystem.Models
         //        public string Country { get; set; }
         //
 
+        [Required]
         [RegularExpression(@"^\d{4}-\d{6}")]
         public string Phone { get; set; }
 
