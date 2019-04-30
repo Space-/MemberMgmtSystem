@@ -1,9 +1,7 @@
 ﻿@model MemberMgmtSystem.Models.Customers
 
 @{
-                /**/
-
-                ViewBag.Title = "Edit";
+    ViewBag.Title = "Edit";
 }
 
 <h2>Edit</h2>
@@ -74,33 +72,23 @@
         passPartialView("Customers", '@action', '@Model.CustomerID');
     });
 
-//    $('#editForm').removeData("validator");
-//    $("#editForm").removeData("unobtrusiveValidation");
     $.validator.unobtrusive.parse("#editForm");
 
     function passPartialView(controller, action, customerId) {
-//        console.log(controller, action, customerId);
 
         var actionUrl = '/' + controller + '/' + action;
-//        console.log('url = ' + actionUrl);
         $.get(actionUrl, {
-                /*           __RequestVerificationToken: $('__RequestVerificationToken').val(),
-                            customer: $('#editForm').serialize()*/
-
-                //            customer: $('#editForm').serializeArray(),
                 CustomerID: $('#CustomerID').val(),
                 ContactName: $('#ContactName').val(),
                 Address: $('#Address').val(),
                 Phone: $('#Phone').val(),
                 Age: $('#Age').val()
             }).done(function(response) {
-//                console.log('response = ' + response);
                 if (response === "RefreshPage") {
                     window.location.href = window.location.href;
                 } else {
                     $('#display').html(response);
                 }
-//            console.log('---done---');
         });
     }
 </script>
